@@ -61,6 +61,55 @@ namespace ASP.NETModule3TP
                 Console.WriteLine($"Auteur: {livre.Key.Prenom} {livre.Key.Nom} Nombre de page moyen: {livre.Average(l => l.NbPages)}");
             }
             Console.WriteLine();
+
+            // Afficher le titre du livre avec le plus de pages
+            var livreLePlusGrand = ListeLivres.OrderByDescending(l => l.NbPages).FirstOrDefault();
+            Console.WriteLine($"Livre avec le plus de page {livreLePlusGrand.Titre} avec {livreLePlusGrand.NbPages} pages");
+            Console.WriteLine();
+
+            // Afficher combien ont gagné les auteurs en moyenne
+            var gainMoyen = ListeAuteurs.Average(a => a.Factures.Sum(f => f.Montant));
+            Console.WriteLine($"Gain moyen : {gainMoyen}");
+            Console.WriteLine();
+
+            // Afficher les auteurs et la liste de leurs livres
+            Console.WriteLine("Liste des livres par auteurs:");
+            foreach (var livre in livresParAuteur)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Auteur : {livre.Key.Prenom} {livre.Key.Nom}");
+                foreach (var l in livre)
+                {
+                    Console.WriteLine(l.Titre);
+                }
+            }
+            Console.WriteLine();
+
+            // Afficher la liste de tous les livres par ordre alphabétique
+            var ListeLivresAscTitre = ListeLivres.OrderBy(l => l.Titre);
+            Console.WriteLine("Liste des livres par odre alphabétique");
+            foreach (var livre in ListeLivresAscTitre)
+            {
+                Console.WriteLine(livre.Titre);
+            }
+            Console.WriteLine();
+
+
+            // Afficher les livres dont le nombre de pages dépasse la moyenne
+            var moyennePage = ListeLivres.Average(l => l.NbPages);
+            var livresSupMoyenne = ListeLivres.Where(l => l.NbPages > moyennePage);
+            Console.WriteLine("Affiche les livres dont le nombre de pages est supérieur à la moyenne.");
+            foreach (var livre in livresSupMoyenne)
+            {
+                Console.WriteLine($"{livre.Titre} {livre.NbPages}");
+            }
+
+            Console.WriteLine();
+
+            // Afficher l'auteur ayant fait le moins de livre
+            var auteurMoinsDeLivres = ListeLivres.GroupBy(l => l.Auteur).OrderBy(n => n.Count()).FirstOrDefault().Key;
+            Console.WriteLine($"Auteur ayant écrit le moins de livre: {auteurMoinsDeLivres.Prenom} {auteurMoinsDeLivres.Nom}");
+            Console.WriteLine();
             Console.ReadKey();
 
         }
