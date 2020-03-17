@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetLinq.BO
+namespace ASP.NETModule3TP.BO
 {
     public class Facture
     {
