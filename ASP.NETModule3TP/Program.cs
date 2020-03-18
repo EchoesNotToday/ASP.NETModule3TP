@@ -39,11 +39,11 @@ namespace ASP.NETModule3TP
             InitialiserDatas();
 
             // Afficher la liste des prénoms des auteurs dont le nom commence par G
-            var auteurGPrenom = ListeAuteurs.Where(a => a.Nom.StartsWith("G")).Select(a => a.Prenom);
+            var auteurNomG = ListeAuteurs.Where(a => a.Nom.StartsWith("G"));
             Console.WriteLine("liste des prénoms des auteurs dont le nom commence par G:");
-            foreach(var prenom in auteurGPrenom)
+            foreach(var auteur in auteurNomG)
             {
-                Console.WriteLine(prenom);
+                Console.WriteLine(auteur.Prenom);
             }
             Console.WriteLine();
 
@@ -108,6 +108,8 @@ namespace ASP.NETModule3TP
 
             // Afficher l'auteur ayant fait le moins de livre
             var auteurMoinsDeLivres = ListeLivres.GroupBy(l => l.Auteur).OrderBy(n => n.Count()).FirstOrDefault().Key;
+            var auteurMoinsDeLivresT = ListeAuteurs.OrderBy(a => ListeLivres.Count(l => l.Auteur == a)).FirstOrDefault();
+            Console.WriteLine($"Vrai auteur avec 0 bouquin {auteurMoinsDeLivresT.Prenom} {auteurMoinsDeLivresT.Nom}");
             Console.WriteLine($"Auteur ayant écrit le moins de livre: {auteurMoinsDeLivres.Prenom} {auteurMoinsDeLivres.Nom}");
             Console.WriteLine();
             
