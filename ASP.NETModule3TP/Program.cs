@@ -110,8 +110,34 @@ namespace ASP.NETModule3TP
             var auteurMoinsDeLivres = ListeLivres.GroupBy(l => l.Auteur).OrderBy(n => n.Count()).FirstOrDefault().Key;
             Console.WriteLine($"Auteur ayant écrit le moins de livre: {auteurMoinsDeLivres.Prenom} {auteurMoinsDeLivres.Nom}");
             Console.WriteLine();
-            Console.ReadKey();
+            
 
+            var p = ListeLivres.OrderBy(l => l.NbPages);
+            Console.WriteLine($"Test pour exo");
+            foreach (var p2 in p)
+            {
+                Console.WriteLine(p2.Titre);
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine($"Test pour exo");
+            var nombres = new[] { 4, 5, 8, 44, 34, 1323, 234, 1235, 665, 987 };
+            Console.WriteLine("nombres.Any(i => i % 2 != 0)");
+            Console.WriteLine(nombres.Any(i => i % 2 != 0));
+
+            Console.WriteLine("nombres.All(i => i % 2 == 0)");
+            Console.WriteLine(nombres.All(i => i % 2 == 0));
+
+            Console.WriteLine("nombres.Any(i => i / 2 == 2)");
+            Console.WriteLine(nombres.Any(i => i / 2 == 2));
+
+            Console.WriteLine("nombres.All(i => i - 3 > 0)");
+            Console.WriteLine(nombres.All(i => i - 3 > 0));
+
+
+            Console.ReadKey();
         }
+        
     }
 }
